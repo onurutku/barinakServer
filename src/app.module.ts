@@ -8,7 +8,7 @@ import { EmailModule } from './email/email.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://barinakadmin:Eni5dh21os8w9xzP@barinakcluster.zvra6qi.mongodb.net/barinak?retryWrites=true&w=majority',
+      'mongodb+srv://usernameandpassword@barinakcluster.zvra6qi.mongodb.net/barinak?retryWrites=true&w=majority',
     ),
     AuthModule,
     EmailModule,
