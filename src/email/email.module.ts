@@ -9,10 +9,10 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
   imports: [
     MailerModule.forRoot({
       transport: {
-        host: 'smtp.sendgrid.net',
+        host: '',
         auth: {
-          user: 'apikey',
-          pass: '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',
+          user: '',
+          pass: '',
         },
       },
       template: {
