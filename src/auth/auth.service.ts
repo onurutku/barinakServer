@@ -40,8 +40,6 @@ export class AuthService {
   }
   async login(userLoginInfo: User) {
     const user = await this.user.findOne({ email: userLoginInfo.email });
-    const payload = { username: user.email, sub: user.id };
-
     if (!user) {
       throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
     }
@@ -54,6 +52,7 @@ export class AuthService {
         HttpStatus.UNAUTHORIZED,
       );
     }
+    const payload = { username: user.email, sub: user.id };
     return {
       id: user.id,
       name: user.name,
