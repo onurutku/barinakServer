@@ -69,6 +69,6 @@ export class AuthService {
     const isAlreadyExist = await this.user.findOne({ email: email }).exec();
     isAlreadyExist.verified = true;
     await this.user.findByIdAndUpdate(isAlreadyExist.id, isAlreadyExist);
-    return `Email address verified <a href='https://gencayinbarinagi.netlify.app/login'>click here</a> to return back`;
+    return `Email address verified <a href='https://onurfullstackloginregister.netlify.app/login'>click here</a> to return back`;
   }
 }
