@@ -9,7 +9,7 @@ export class EmailService {
       to: mailTo,
       from: 'barinakdeneme@gmail.com',
       subject: 'Verify your email address',
-      html: "<a href='https://www.google.com/'>Click here to verify your email</a>",
+      html: `<a href='https://barinak.herokuapp.com/auth/verify-user?email=${mailTo}'>Click here to verify your email</a>`,
     });
     return 'Please check your mailbox to verify your account';
   }
