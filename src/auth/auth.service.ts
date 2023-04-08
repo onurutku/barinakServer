@@ -73,6 +73,12 @@ export class AuthService {
   }
   async profile(id: string) {
     const findUser = await this.user.findById(id).exec();
-    return findUser;
+    return {
+      id: findUser.id,
+      name: findUser.name,
+      surname: findUser.surname,
+      age: findUser.age,
+      email: findUser.email,
+    };
   }
 }
