@@ -9,10 +9,10 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
   imports: [
     MailerModule.forRoot({
       transport: {
-        host: 'ses-smtp-user.20230408-103037',
+        host: 'smtp.gmail.com',
         auth: {
-          user: 'AKIAX5QNHV6DE333BG7J',
-          pass: 'BGfEpuPbOZwQVwXa4MVsqRx1p91EGQ7YPDlDA111rJCd',
+          user: 'topaloglu08@gmail.com',
+          pass: 'Onur2235171',
         },
       },
       template: {
