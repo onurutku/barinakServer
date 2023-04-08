@@ -11,8 +11,8 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
       transport: {
         host: 'ses-smtp-user.20230408-103037',
         auth: {
-          user: 'apikey',
-          pass: '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',
+          user: 'AKIAX5QNHV6DE333BG7J',
+          pass: 'BGfEpuPbOZwQVwXa4MVsqRx1p91EGQ7YPDlDA111rJCd',
         },
       },
       template: {
