@@ -71,4 +71,8 @@ export class AuthService {
     await this.user.findByIdAndUpdate(isAlreadyExist.id, isAlreadyExist);
     return `Email address verified <a href='https://onurfullstackloginregister.netlify.app/login'>click here</a> to return back`;
   }
+  async profile(id: string) {
+    const findUser = await this.user.findById(id).exec();
+    return findUser;
+  }
 }

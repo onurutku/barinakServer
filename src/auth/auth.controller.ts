@@ -17,4 +17,8 @@ export class AuthController {
   verify(@Query() param: string) {
     return this.authService.verify(param['email']);
   }
+  @Get('profile')
+  profile(@Query() param: any) {
+    return this.authService.profile(param['id']);
+  }
 }
