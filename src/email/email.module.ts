@@ -9,11 +9,13 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
   imports: [
     MailerModule.forRoot({
       transport: {
-        host: 'smtp.sendgrid.net',
+        host: 'email-smtp.eu-north-1.amazonaws.com',
         auth: {
-          user: 'apikey',
-          pass: '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',
+          user: 'AKIAX5QNHV6DJDRGU3P3',
+          pass: 'BLfomXzyglZDB6Qf9LYSPpZjzpGWHSJd+Y/ype/zPNBU',
         },
+        port: 587,
+        secure: false,
       },
       template: {
         dir: join(__dirname, 'email/mails'),
