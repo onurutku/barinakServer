@@ -53,16 +53,12 @@ export class AuthService {
       );
     }
     const payload = { username: user.email, sub: user.id };
+    const access_token = this.jwtService.sign(payload, {
+      secret: `${process.env.JWT_SECRET}`,
+      expiresIn: '1h',
+    });
     return {
-      id: user.id,
-      name: user.name,
-      surname: user.surname,
-      age: user.age,
-      email: user.email,
-      access_token: this.jwtService.sign(payload, {
-        secret: `${process.env.JWT_SECRET}`,
-        expiresIn: '1h',
-      }),
+      access_token: access_token,
     };
   }
   async verify(email: string) {

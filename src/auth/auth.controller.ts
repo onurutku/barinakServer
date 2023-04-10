@@ -28,8 +28,9 @@ export class AuthController {
   }
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  async profile(@Query() param: string, @Request() req: any) {
-    const user = await this.authService.profile(param['id']);
+  async profile(@Request() req: any) {
+    const userId: string = req.user.sub;
+    const user = await this.authService.profile(userId);
     return {
       id: user.id,
       name: user.name,
