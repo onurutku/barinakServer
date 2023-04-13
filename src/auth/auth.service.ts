@@ -55,11 +55,11 @@ export class AuthService {
     const payload = { username: user.email, sub: user.id };
     const access_token = this.jwtService.sign(payload, {
       secret: `${process.env.JWT_SECRET}`,
-      expiresIn: '15m',
+      expiresIn: '1m',
     });
     const refresh_token = this.jwtService.sign(payload, {
       secret: `${process.env.JWT_SECRET}`,
-      expiresIn: '1d',
+      expiresIn: '3m',
     });
     return {
       access_token: access_token,
@@ -86,7 +86,7 @@ export class AuthService {
     const payload = { username: req.username, sub: req.sub };
     const access_token = this.jwtService.sign(payload, {
       secret: `${process.env.JWT_SECRET}`,
-      expiresIn: '15m',
+      expiresIn: '1m',
     });
     return { access_token: access_token };
   }
