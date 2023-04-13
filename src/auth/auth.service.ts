@@ -55,10 +55,15 @@ export class AuthService {
     const payload = { username: user.email, sub: user.id };
     const access_token = this.jwtService.sign(payload, {
       secret: `${process.env.JWT_SECRET}`,
-      expiresIn: '1h',
+      expiresIn: '15m',
+    });
+    const refresh_token = this.jwtService.sign(payload, {
+      secret: `${process.env.JWT_SECRET}`,
+      expiresIn: '1d',
     });
     return {
       access_token: access_token,
+      refresh_token: refresh_token,
     };
   }
   async verify(email: string) {
@@ -76,5 +81,13 @@ export class AuthService {
       age: findUser.age,
       email: findUser.email,
     };
+  }
+  async refresh(req: any) {
+    const payload = { username: req.username, sub: req.sub };
+    const access_token = this.jwtService.sign(payload, {
+      secret: `${process.env.JWT_SECRET}`,
+      expiresIn: '15m',
+    });
+    return { access_token: access_token };
   }
 }

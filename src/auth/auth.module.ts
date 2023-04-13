@@ -5,10 +5,11 @@ import { userSchema } from './auth.model';
 import { AuthService } from './auth.service';
 import { JwtService } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
+import { JwtRefreshStrategy } from './jwt-refresh.strategy';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'users', schema: userSchema }])],
   controllers: [AuthController],
-  providers: [AuthService, JwtService, JwtStrategy],
+  providers: [AuthService, JwtService, JwtStrategy, JwtRefreshStrategy],
 })
 export class AuthModule {}

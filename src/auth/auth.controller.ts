@@ -6,10 +6,12 @@ import {
   Query,
   UseGuards,
   Request,
+  Param,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { User } from './auth.model';
 import { JwtAuthGuard } from './jwt-auth-guard.guard';
+import { JwtRefreshGuard } from './jwt-refresh-guard.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -25,6 +27,11 @@ export class AuthController {
   @Get('verify-user')
   verify(@Query() param: string) {
     return this.authService.verify(param['email']);
+  }
+  @UseGuards(JwtRefreshGuard)
+  @Post('refresh')
+  async refresh(@Request() req: any) {
+    return this.authService.refresh(req.user);
   }
   @UseGuards(JwtAuthGuard)
   @Get('profile')
