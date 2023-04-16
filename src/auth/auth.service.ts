@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import * as dotenv from 'dotenv';
+import { MailerService } from '@nestjs-modules/mailer';
 dotenv.config();
 
 @Injectable()
@@ -12,6 +13,7 @@ export class AuthService {
   constructor(
     @InjectModel('users') private readonly user: Model<User>,
     private jwtService: JwtService,
+    private mailService: MailerService,
   ) {}
   async register(userRegisterInfo: User) {
     const hashedPassword = await bcrypt.hash(userRegisterInfo.password, 12);
@@ -89,5 +91,25 @@ export class AuthService {
       expiresIn: '1m',
     });
     return { access_token: access_token };
+  }
+  async passwordResetEmail(email: {
+    email: string;
+  }): Promise<{ message: string }> {
+    const user = await this.user.findOne({ email: email.email });
+    await this.mailService.sendMail({
+      to: email.email,
+      from: 'barinakdeneme@gmail.com',
+      subject: 'Verify your email address',
+      html: `<a href='https://onurfullstackloginregister.netlify.app/reset-password/${user.id}'>Click here to reset your password</a>`,
+      // html: `<a href='http://localhost:4200/reset-password/${user.id}'>Click here to reset your password</a>`,
+    });
+    return { message: 'Check you mailbox to reset your password' };
+  }
+  async resetPassword(resetInfo: any): Promise<{ message: string }> {
+    const user = await this.user.findById(resetInfo.userId);
+    const newHashedPassword = await bcrypt.hash(resetInfo.newPassword, 12);
+    user.password = newHashedPassword;
+    await this.user.findByIdAndUpdate(resetInfo.userId, user);
+    return { message: 'Your Password has been updated' };
   }
 }

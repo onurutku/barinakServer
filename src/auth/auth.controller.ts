@@ -28,6 +28,16 @@ export class AuthController {
   verify(@Query() param: string) {
     return this.authService.verify(param['email']);
   }
+  @Post('password-reset-email')
+  passwordResetEmail(
+    @Body() email: { email: string },
+  ): Promise<{ message: string }> {
+    return this.authService.passwordResetEmail(email);
+  }
+  @Post('reset-password')
+  resetPassword(@Body() resetInfo: any): Promise<{ message: string }> {
+    return this.authService.resetPassword(resetInfo);
+  }
   @UseGuards(JwtRefreshGuard)
   @Post('refresh')
   async refresh(@Request() req: any) {
