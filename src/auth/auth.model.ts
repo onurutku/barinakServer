@@ -6,6 +6,7 @@ export const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   verified: Boolean,
+  profilePicture: String,
 });
 export class User extends mongoose.Document {
   constructor(
@@ -15,6 +16,7 @@ export class User extends mongoose.Document {
     public surname?: string,
     public age?: number,
     public verified?: boolean,
+    public profilePicture?: any,
   ) {
     super();
   }

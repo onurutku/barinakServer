@@ -57,11 +57,11 @@ export class AuthService {
     const payload = { username: user.email, sub: user.id };
     const access_token = this.jwtService.sign(payload, {
       secret: `${process.env.JWT_SECRET}`,
-      expiresIn: '1m',
+      expiresIn: '15m',
     });
     const refresh_token = this.jwtService.sign(payload, {
       secret: `${process.env.JWT_SECRET}`,
-      expiresIn: '3m',
+      expiresIn: '1h',
     });
     return {
       access_token: access_token,
@@ -82,13 +82,14 @@ export class AuthService {
       surname: findUser.surname,
       age: findUser.age,
       email: findUser.email,
+      profilePicture: findUser.profilePicture,
     };
   }
   async refresh(req: any) {
     const payload = { username: req.username, sub: req.sub };
     const access_token = this.jwtService.sign(payload, {
       secret: `${process.env.JWT_SECRET}`,
-      expiresIn: '1m',
+      expiresIn: '15m',
     });
     return { access_token: access_token };
   }

@@ -54,6 +54,7 @@ export class AuthController {
       surname: user.surname,
       age: user.age,
       email: user.email,
+      profilePicture: user.profilePicture,
       iat: req.user.iat,
       exp: req.user.exp,
     };
